@@ -57,15 +57,18 @@ const Customizer = () => {
     try {
       //  Call the backend API
       setGeneratingImg(true);
-      const response = await fetch("http://localhost:5002/api/v1/dalle", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          prompt,
-        }),
-      });
+      const response = await fetch(
+        "https://bamboo-3d-shirt.vercel.app/api/v1/dalle",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt,
+          }),
+        }
+      );
       const data = await response.json();
       handleDecals(type, `data:image/png;base64,${data.photo}`);
     } catch (error) {
